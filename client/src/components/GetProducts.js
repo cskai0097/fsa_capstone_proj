@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function ProductList() {
+function GetProducts() {
     const [ products, setProducts ] = useState([])
     useEffect(()=> {
         fetch("https://fakestoreapi.com/products")
@@ -12,7 +12,7 @@ function ProductList() {
         .catch(error => {
             console.error('Error fetching products: ', error);
         })
-    },[])
+    },[products])
 
     return (
         <div>
@@ -21,7 +21,7 @@ function ProductList() {
                 {products.map(product => (
                     <li key={product.id}>
                         <h3>{product.title}</h3>
-                        <img src={product.image}/>
+                        <img src={product.image} alt={product.title} style={{width:'100px', height:'100px'}}/>
                         Price: ${product.price}
                         Category: {product.category}
                         {}</li>
@@ -30,3 +30,4 @@ function ProductList() {
         </div>
     )
 }
+export default GetProducts;
